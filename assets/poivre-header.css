@@ -69,12 +69,12 @@
 
 .header__heading-logo {
   width: auto;
-  max-height: 32px;
+  max-height: 160px;
   height: auto;
 }
 
 @media screen and (max-width: 749px) {
-  .header__heading-logo { max-height: 24px; }
+  .header__heading-logo { max-height: 120px; }
 }
 
 /* ---------- Nav links ---------- */
