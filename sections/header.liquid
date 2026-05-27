@@ -265,6 +265,7 @@
           {%- else -%}
             <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
           {%- endif -%}
+          <span class="header__label">ACCOUNT</span>
           <span class="visually-hidden">
             {%- liquid
               if customer
@@ -290,6 +291,7 @@
           {% else %}
             <span class="svg-wrapper">{{'icon-cart.svg' | inline_asset_content }}</span>
           {% endif %}
+        <span class="header__label">CART ({{ cart.item_count | default: 0 }})</span>
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
           <div class="cart-count-bubble">
