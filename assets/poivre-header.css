@@ -243,7 +243,7 @@ body {
   max-height: 110px; /* +30% from 84px */
   height: auto;
   display: block;
-  margin-right: -4.5rem;
+  margin-right: -7rem;
   transform: translateY(14px);
 }
 
