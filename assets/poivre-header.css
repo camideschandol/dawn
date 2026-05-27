@@ -261,6 +261,34 @@ body.template-index .shopify-section-header-sticky .section-header::after {
   white-space: nowrap;
 }
 
+/* ---------- Hyeja-style "tab" boxes around action labels ---------- */
+/* MENU, CART (count), and SEARCH each sit inside a thin rectangular outline,
+   distinguishing functional actions from plain browse links. */
+
+@media screen and (min-width: 990px) {
+  .header__icon--menu .header__label,
+  .header__icon--cart .header__label,
+  .header__icon--search .header__label,
+  .header__search .header__label {
+    border: 1px solid currentColor;
+    padding: 0.5rem 0.7rem;
+    line-height: 1;
+  }
+
+  /* Hover/focus: warm to cocoa, border follows. */
+  .header__icon--menu:hover .header__label,
+  .header__icon--cart:hover .header__label,
+  .header__icon--search:hover .header__label,
+  .header__search:hover .header__label,
+  .header__icon--menu:focus-visible .header__label,
+  .header__icon--cart:focus-visible .header__label,
+  .header__icon--search:focus-visible .header__label,
+  .header__search:focus-visible .header__label {
+    color: var(--poivre-accent-cocoa, #6B4423);
+    border-color: var(--poivre-accent-cocoa, #6B4423);
+  }
+}
+
 /* Strip Dawn's icon button styling so labels read as plain text. */
 .header__icon,
 .header__icon--cart,
