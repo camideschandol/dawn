@@ -33,18 +33,44 @@ body.template-index .section-header::after {
 }
 
 
-/* ---------- Announcement bar ---------- */
+/* ---------- Announcement bar — fixed at the bottom of the viewport,
+   black background, white text, sticky as the page scrolls. ---------- */
 
-.announcement-bar {
-  border-bottom: 1px solid var(--poivre-rule, #D9CFC2);
+.announcement-bar,
+body.template-index .announcement-bar {
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: auto !important;
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  z-index: 100;
+  margin: 0;
 }
 
-.announcement-bar__message {
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
+.announcement-bar__message,
+body.template-index .announcement-bar__message {
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  padding: 0.5rem 1.5rem;
+  padding: 0.7rem 1.5rem;
   font-weight: 300;
+  margin: 0;
+  text-align: center;
+}
+
+/* Make sure announcement bar's text colour token is overridden */
+.announcement-bar .announcement-bar__message {
+  --color-foreground: 255, 255, 255;
+}
+
+/* Reserve space at the bottom of the body so content doesn't sit under the bar */
+body {
+  padding-bottom: 2.6rem;
 }
 
 /* ---------- Header outer container ---------- */
@@ -177,13 +203,14 @@ body.template-index .section-header::after {
   .header__heading-logo { max-height: 64px; }
 }
 
-/* ---------- Nav links — tiny, tracked-out, low-contrast ---------- */
+/* ---------- Nav links — Cormorant serif, +40% larger than previous ---------- */
 
 .header__menu-item {
-  font-family: var(--font-body-family);
-  font-size: 0.7rem;
-  font-weight: 300;
-  letter-spacing: 0.16em;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: 0.98rem; /* +40% from 0.7rem */
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 0.5rem 0.8rem;
   color: var(--poivre-ink-primary, #1A1A1A);
@@ -244,15 +271,16 @@ body.template-index .section-header::after {
   display: none;
 }
 
-/* The text labels themselves. */
+/* The text labels themselves — Cormorant serif, sized to match nav items. */
 .header__label {
   display: inline-block;
-  font-family: var(--font-body-family);
-  font-size: 0.7rem;
-  font-weight: 300;
-  letter-spacing: 0.16em;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: 0.98rem; /* +40% from 0.7rem */
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--poivre-ink-primary, #1A1A1A);
+  color: #1A1A1A;
   line-height: 1;
   white-space: nowrap;
 }
@@ -267,20 +295,22 @@ body.template-index .section-header::after {
   .header__icon--cart .header__label,
   .header__icon--search .header__label,
   .header__search .header__label {
-    border: 1px solid var(--poivre-ink-primary, #1A1A1A);
-    padding: 0.3rem 0.55rem;
+    background: #FFFFFF;
+    color: #1A1A1A;
+    border: none;
+    border-radius: 999px; /* full pill / bullet shape */
+    padding: 0.55rem 1.1rem;
     line-height: 1;
-    background: transparent;
   }
 
-  /* Plain nav items: add the same vertical padding (no border) so they
-     align on the same baseline as the boxed labels. */
+  /* Plain nav items: add equivalent vertical padding so the baselines align
+     with the pill-shaped labels. */
   .header__menu-item {
-    padding-top: calc(0.3rem + 1px);
-    padding-bottom: calc(0.3rem + 1px);
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
   }
 
-  /* Hover/focus: warm to cocoa, border follows. */
+  /* Hover/focus: subtle dim of the pill background. */
   .header__icon--menu:hover .header__label,
   .header__icon--cart:hover .header__label,
   .header__icon--search:hover .header__label,
@@ -289,8 +319,8 @@ body.template-index .section-header::after {
   .header__icon--cart:focus-visible .header__label,
   .header__icon--search:focus-visible .header__label,
   .header__search:focus-visible .header__label {
+    background: #F7F2F0;
     color: var(--poivre-accent-cocoa, #6B4423);
-    border-color: var(--poivre-accent-cocoa, #6B4423);
   }
 
   /* Force vertical centering across all header children. */
