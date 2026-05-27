@@ -1,0 +1,157 @@
+/* ============================================================
+   Poivre Paris — Featured Editorial (PRD §5.1)
+   Hyeja-inspired 2-column hero. Stacks on mobile.
+   ============================================================ */
+
+.featured-editorial {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  overflow: hidden;
+}
+
+.featured-editorial__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  width: 100%;
+  min-height: inherit;
+}
+
+/* Desktop: 40% text / 60% image, per PRD §5.1 */
+@media screen and (min-width: 990px) {
+  .featured-editorial--height-medium { min-height: 70vh; }
+  .featured-editorial--height-large  { min-height: 88vh; }
+  .featured-editorial--height-full   { min-height: 100vh; }
+
+  .featured-editorial__inner {
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 1fr;
+  }
+
+  /* Image on right (default). */
+  .featured-editorial--image-right .featured-editorial__text { grid-column: 1; }
+  .featured-editorial--image-right .featured-editorial__media { grid-column: 2; }
+
+  /* Image on left. */
+  .featured-editorial--image-left .featured-editorial__inner {
+    grid-template-columns: 60% 40%;
+  }
+  .featured-editorial--image-left .featured-editorial__text { grid-column: 2; }
+  .featured-editorial--image-left .featured-editorial__media { grid-column: 1; }
+}
+
+/* Mobile / tablet: image above text, both full-width.
+   PRD §5 AC: "image moves above text on screens < 768px". */
+.featured-editorial__media {
+  order: 0;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.featured-editorial__text {
+  order: 1;
+}
+
+@media screen and (min-width: 990px) {
+  .featured-editorial__media { aspect-ratio: auto; }
+  .featured-editorial__text  { order: initial; }
+  .featured-editorial__media { order: initial; }
+}
+
+/* Media */
+.featured-editorial__media img,
+.featured-editorial__media svg,
+.featured-editorial__placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Text block — generous whitespace, vertical centering on desktop. */
+.featured-editorial__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 1.6rem;
+  gap: 2.4rem;
+}
+
+@media screen and (min-width: 750px) {
+  .featured-editorial__text { padding: 6rem 4rem; gap: 2.8rem; }
+}
+@media screen and (min-width: 990px) {
+  .featured-editorial__text { padding: 8rem 6rem; }
+}
+@media screen and (min-width: 1400px) {
+  .featured-editorial__text { padding: 8rem 9rem; }
+}
+
+/* Eyebrow */
+.featured-editorial__eyebrow {
+  margin: 0;
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground) / 0.7);
+}
+
+/* Headline — Cormorant, large.
+   PRD §02: 56–72px desktop, 40–48px mobile. */
+.featured-editorial__heading {
+  margin: 0;
+  font-family: var(--font-heading-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 4rem;
+  line-height: 1.08;
+  letter-spacing: -0.005em;
+  max-width: 18ch;
+}
+
+@media screen and (min-width: 750px) {
+  .featured-editorial__heading { font-size: 4.8rem; }
+}
+@media screen and (min-width: 990px) {
+  .featured-editorial__heading { font-size: 5.6rem; }
+}
+@media screen and (min-width: 1400px) {
+  .featured-editorial__heading { font-size: 6.8rem; }
+}
+
+/* Body — Montserrat 15px, narrow measure. */
+.featured-editorial__body {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  max-width: 42ch;
+  color: rgb(var(--color-foreground) / 0.85);
+}
+.featured-editorial__body p { margin: 0; }
+.featured-editorial__body p + p { margin-top: 1.2rem; }
+
+/* CTA — tracked-out underline, not a button box.
+   PRD §5.1: "uppercase tracked-out, with underline-on-hover treatment". */
+.featured-editorial__cta {
+  align-self: flex-start;
+  margin: 0;
+  padding: 0 0 0.4rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+  transition: color 250ms ease, border-color 250ms ease, transform 250ms ease;
+}
+.featured-editorial__cta:hover {
+  color: #6B4423;
+  border-bottom-color: #6B4423;
+}
+
+/* Sit flush against header on small screens (header is sticky). */
+.section-featured-editorial:first-of-type {
+  margin-top: 0;
+}
