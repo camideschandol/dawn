@@ -102,7 +102,9 @@ body {
   z-index: 4;
 }
 
-/* Replace Dawn's grid layout with a flat flex row. */
+/* Replace Dawn's grid layout with a flat flex row.
+   Override .page-width so the header extends nearly edge-to-edge
+   (Hyeja-style — content fills the viewport with small gutters only). */
 .header.header,
 .header.header--middle-left,
 .header.header--middle-center,
@@ -113,10 +115,21 @@ body {
   align-items: center;
   flex-wrap: nowrap;
   grid-template: none !important;
-  gap: 1.6rem;
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
+  gap: 1rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   min-height: 0;
+  max-width: none !important;
+  width: 100%;
+}
+
+@media screen and (min-width: 990px) {
+  .header.header {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
 }
 
 /* Hairline rule under header */
@@ -225,23 +238,31 @@ body {
   .header__heading-logo { max-height: 64px; }
 }
 
-/* ---------- Nav links — Cormorant serif, +40% larger than previous ---------- */
+/* ---------- Nav links — Cormorant serif, pill-bordered like MENU/CART ---------- */
 
 .header__menu-item {
   font-family: var(--font-heading-family);
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
-  font-size: 0.98rem; /* +40% from 0.7rem */
+  font-size: 0.98rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 0.5rem 0.8rem;
-  color: var(--poivre-ink-primary, #1A1A1A);
-  transition: color 250ms ease;
+  padding: 0.55rem 1.1rem;
+  color: #1A1A1A;
+  background: #FFFFFF;
+  border: 1px solid #1A1A1A;
+  border-radius: 999px;
+  line-height: 1;
+  transition: background 250ms ease, color 250ms ease, border-color 250ms ease;
 }
 
+/* Hover: invert (black fill, white text) — matches the MENU/CART/SEARCH pills. */
 .header__menu-item:hover,
-.header__menu-item[aria-expanded="true"] {
-  color: var(--poivre-accent-cocoa, #6B4423);
+.header__menu-item[aria-expanded="true"],
+.header__menu-item:focus-visible {
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border-color: #1A1A1A;
 }
 
 .header__menu-item span {
