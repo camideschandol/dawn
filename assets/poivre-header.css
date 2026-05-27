@@ -103,9 +103,11 @@
     order: 5;
   }
 
-  /* ACCOUNT — hide, Hyeja has no account link */
-  .header__icon--account {
-    display: none;
+  /* ACCOUNT — hide entirely (Hyeja shows no account link) */
+  .header__icon--account,
+  .header__icon--account.link,
+  a.header__icon--account {
+    display: none !important;
   }
 
   /* LOGO — right-aligned, last */
@@ -225,7 +227,27 @@
   color: var(--poivre-ink-primary, #1A1A1A);
   background: transparent;
   transition: color 250ms ease;
+  text-decoration: none;
 }
+
+/* Override Dawn's .link.link--text underline on all header items. */
+.header .link,
+.header .link--text,
+.header__icon.link,
+.header__icon--summary,
+a.header__heading-link {
+  text-decoration: none !important;
+}
+
+.header .link:hover,
+.header__icon.link:hover {
+  text-decoration: none !important;
+}
+
+/* Ensure the menu drawer's summary has no marker / triangle */
+.menu-drawer-container summary::marker,
+.header__icon--summary::marker { display: none; }
+.menu-drawer-container summary { list-style: none; }
 
 .header__icon:hover,
 .header__icon:focus-visible {
