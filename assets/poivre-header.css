@@ -100,6 +100,12 @@ body {
 .section-header {
   position: relative;
   z-index: 4;
+  overflow: visible;
+}
+
+.shopify-section-header,
+.header.header {
+  overflow: visible !important;
 }
 
 /* Replace Dawn's grid layout with a flat flex row.
@@ -243,8 +249,7 @@ body {
   max-height: 110px; /* +30% from 84px */
   height: auto;
   display: block;
-  margin-right: -7rem;
-  transform: translateY(14px);
+  transform: translate(120px, 14px); /* push right + down, visually */
 }
 
 @media screen and (max-width: 749px) {
