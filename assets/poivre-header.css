@@ -15,10 +15,8 @@ body.template-index .shopify-section-header,
 body.template-index .section-header,
 body.template-index .featured-editorial,
 body.template-index .featured-editorial__text,
-body.template-index .announcement-bar,
-body.template-index .announcement-bar__message,
-body.template-index .color-scheme-1,
-body.template-index .color-background-1 {
+body.template-index .color-background-1,
+body.template-index .shopify-section-header .color-scheme-1 {
   background-color: #F7F2F0 !important;
 }
 
@@ -33,11 +31,12 @@ body.template-index .section-header::after {
 }
 
 
-/* ---------- Announcement bar — fixed at the bottom of the viewport,
-   black background, white text, sticky as the page scrolls. ---------- */
+/* ---------- Announcement bar — fixed at the bottom of the viewport ----------
+   Target the outer .utility-bar wrapper, force a compact height, override
+   Dawn's slideshow/slider min-heights that would otherwise blow it up. */
 
-.announcement-bar,
-body.template-index .announcement-bar {
+.utility-bar,
+body.template-index .utility-bar {
   position: fixed !important;
   bottom: 0;
   left: 0;
@@ -47,30 +46,52 @@ body.template-index .announcement-bar {
   color: #FFFFFF !important;
   border: none !important;
   z-index: 100;
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
 }
 
-.announcement-bar__message,
-body.template-index .announcement-bar__message {
-  background: #1A1A1A !important;
+.utility-bar .utility-bar__grid,
+.utility-bar .announcement-bar,
+.utility-bar .announcement-bar-slider,
+.utility-bar .slider,
+.utility-bar .slideshow,
+.utility-bar .swiper-slide {
+  background: transparent !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.utility-bar .announcement-bar__message,
+.utility-bar .announcement-bar__link,
+body.template-index .utility-bar .announcement-bar__message,
+body.template-index .utility-bar .announcement-bar__link {
+  background: transparent !important;
   color: #FFFFFF !important;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 0.7rem 1.5rem;
+  padding: 0.75rem 1.5rem !important;
   font-weight: 300;
   margin: 0;
   text-align: center;
+  display: block;
+  width: 100%;
+  line-height: 1;
 }
 
-/* Make sure announcement bar's text colour token is overridden */
-.announcement-bar .announcement-bar__message {
+/* Override Dawn's foreground token inside the dark bar so all child text is white */
+.utility-bar,
+.utility-bar .announcement-bar {
   --color-foreground: 255, 255, 255;
 }
 
 /* Reserve space at the bottom of the body so content doesn't sit under the bar */
 body {
-  padding-bottom: 2.6rem;
+  padding-bottom: 3rem;
 }
 
 /* ---------- Header outer container ---------- */
