@@ -5,35 +5,31 @@
    ============================================================ */
 
 /* ---------- Homepage: beige extends into header (Hyeja-style) ---------- */
-/* The hero backdrop colour bleeds up through the header so the header text
-   sits ON the hero, not above it. Other pages keep a normal white header. */
+/* Body, main, header all share the same #F7F2F0 surface so the colour
+   bleeds up through the header. Other pages keep a normal white header. */
 
-body.template-index {
-  background: #F7F2F0;
-}
-
+body.template-index,
+body.template-index #MainContent,
+body.template-index .shopify-section-group-header-group,
+body.template-index .shopify-section-header,
 body.template-index .section-header,
-body.template-index .shopify-section-header {
-  background: transparent !important;
+body.template-index .featured-editorial,
+body.template-index .featured-editorial__text,
+body.template-index .announcement-bar,
+body.template-index .announcement-bar__message,
+body.template-index .color-scheme-1,
+body.template-index .color-background-1 {
+  background-color: #F7F2F0 !important;
 }
 
-body.template-index .announcement-bar,
-body.template-index .announcement-bar__message {
-  background: transparent !important;
-  border-bottom: none;
+/* Lose the borders/dividers between header and hero on homepage. */
+body.template-index .section-header,
+body.template-index .announcement-bar {
+  border: none !important;
 }
 
 body.template-index .section-header::after {
-  display: none; /* drop the hairline rule under header on homepage */
-}
-
-body.template-index .shopify-section-header-sticky .section-header,
-body.template-index .shopify-section-header-sticky .announcement-bar {
-  background: #F7F2F0 !important; /* once scrolled past, header gets the solid colour */
-}
-
-body.template-index .shopify-section-header-sticky .section-header::after {
-  display: block;
+  display: none;
 }
 
 
@@ -262,17 +258,26 @@ body.template-index .shopify-section-header-sticky .section-header::after {
 }
 
 /* ---------- Hyeja-style "tab" boxes around action labels ---------- */
-/* MENU, CART (count), and SEARCH each sit inside a thin rectangular outline,
-   distinguishing functional actions from plain browse links. */
+/* MENU, CART (count), and SEARCH each sit inside a thin rectangular outline.
+   Thin hairline border, tight padding — sized to match the visual weight
+   of the plain text nav items beside them. */
 
 @media screen and (min-width: 990px) {
   .header__icon--menu .header__label,
   .header__icon--cart .header__label,
   .header__icon--search .header__label,
   .header__search .header__label {
-    border: 1px solid currentColor;
-    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--poivre-ink-primary, #1A1A1A);
+    padding: 0.3rem 0.55rem;
     line-height: 1;
+    background: transparent;
+  }
+
+  /* Plain nav items: add the same vertical padding (no border) so they
+     align on the same baseline as the boxed labels. */
+  .header__menu-item {
+    padding-top: calc(0.3rem + 1px);
+    padding-bottom: calc(0.3rem + 1px);
   }
 
   /* Hover/focus: warm to cocoa, border follows. */
@@ -286,6 +291,17 @@ body.template-index .shopify-section-header-sticky .section-header::after {
   .header__search:focus-visible .header__label {
     color: var(--poivre-accent-cocoa, #6B4423);
     border-color: var(--poivre-accent-cocoa, #6B4423);
+  }
+
+  /* Force vertical centering across all header children. */
+  .header.header,
+  .header.header > *,
+  .header.header header-drawer,
+  .header.header .header__icon,
+  .header.header .header__inline-menu,
+  .header.header .header__menu-item {
+    align-items: center;
+    align-self: center;
   }
 }
 
