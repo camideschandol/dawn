@@ -49,9 +49,7 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  /* Warm-beige backdrop (Hyeja-style) — shows behind any uploaded image
-     and as a solid placeholder when no image is set. */
-  background: #DCC9B0;
+  background: #F7F2F0; /* light beige backdrop, matches body bg on homepage */
 }
 .featured-editorial__text {
   order: 1;
