@@ -187,9 +187,10 @@ body {
   /* Arrow separator after cart */
   .header__icon--cart::after {
     content: '\2192'; /* → */
-    margin-left: 1.6rem;
-    font-size: 0.8rem;
-    color: var(--poivre-ink-muted, #5C5C5C);
+    margin-left: 1.4rem;
+    margin-right: 1.4rem;
+    font-size: 0.9rem;
+    color: var(--poivre-ink-primary, #1A1A1A);
     display: inline-block;
     line-height: 1;
   }
@@ -238,16 +239,19 @@ body {
   .header__heading-logo { max-height: 64px; }
 }
 
-/* ---------- Nav links — Cormorant serif, pill-bordered like MENU/CART ---------- */
+/* ---------- Nav links — sharp-corner rectangles, fixed height match the pills ---------- */
 
 .header__menu-item {
+  display: inline-flex;
+  align-items: center;
+  height: 2.2rem;
   font-family: var(--font-heading-family);
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
   font-size: 0.98rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 0.55rem 1.1rem;
+  padding: 0 1rem;
   color: #1A1A1A;
   background: #FFFFFF;
   border: 1px solid #1A1A1A;
@@ -334,23 +338,19 @@ body {
    of the plain text nav items beside them. */
 
 @media screen and (min-width: 990px) {
-  /* MENU, CART, SEARCH — fully rounded pills */
+  /* MENU, CART, SEARCH — fully rounded pills, same fixed height as rectangles */
   .header__icon--menu .header__label,
   .header__icon--cart .header__label,
   .header__icon--search .header__label,
   .header__search .header__label {
+    display: inline-flex;
+    align-items: center;
+    height: 2.2rem;
     background: #FFFFFF;
     color: #1A1A1A;
     border: 1px solid #1A1A1A;
     border-radius: 999px;
-    padding: 0.55rem 1.1rem;
-    line-height: 1;
-  }
-
-  /* Plain nav items already have border-radius: 0 (sharp rectangles).
-     Match the pills' total height: same vertical padding + same border. */
-  .header__menu-item {
-    padding: 0.55rem 1.1rem; /* matches pill padding exactly */
+    padding: 0 1.1rem;
     line-height: 1;
   }
 
