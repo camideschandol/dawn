@@ -1,0 +1,79 @@
+/* ============================================================
+   Poivre Paris — brand layer on top of Dawn
+   See PRD §02 for the design tokens this file references.
+   ============================================================ */
+
+:root {
+  --poivre-bg-primary: #F5EDE2;
+  --poivre-bg-secondary: #FAF6F0;
+  --poivre-ink-primary: #1A1A1A;
+  --poivre-ink-muted: #5C5C5C;
+  --poivre-accent-cocoa: #6B4423;
+  --poivre-accent-bordeaux: #6E1F2A;
+  --poivre-rule: #D9CFC2;
+
+  --poivre-tracking-label: 0.1em;
+  --poivre-tracking-small: 0.08em;
+  --poivre-transition: 250ms ease;
+}
+
+/* Tracked-out uppercase treatment for UI labels, buttons, eyebrows.
+   Per PRD §02: all UI labels are uppercase + letter-spacing 0.1em. */
+.button,
+.shopify-payment-button__button--unbranded,
+.product-form__submit,
+.cart__checkout-button,
+nav .header__menu-item,
+.header__menu-item,
+.list-menu__item,
+.product__title h1,
+.cart-item__name,
+.tab-button,
+.collection__title-wrapper,
+.facets__heading {
+  letter-spacing: var(--poivre-tracking-label);
+}
+
+/* Buttons: hard edges, no decorative shadow.
+   Hover warms to cocoa (PRD §02 interaction principles). */
+.button:not([disabled]):not(.button--tertiary):hover {
+  background: var(--poivre-accent-cocoa);
+  border-color: var(--poivre-accent-cocoa);
+  color: var(--poivre-bg-primary);
+  transition: background var(--poivre-transition),
+              border-color var(--poivre-transition),
+              color var(--poivre-transition);
+}
+
+/* Focus rings in cocoa, never browser default.
+   PRD §12.3: accessibility requires visible focus rings. */
+*:focus-visible {
+  outline: 2px solid var(--poivre-accent-cocoa);
+  outline-offset: 2px;
+}
+
+/* Soften default hairline rules to match brand palette. */
+hr,
+.product__info-container > * + *,
+.cart-items thead tr {
+  border-color: var(--poivre-rule);
+}
+
+/* Body type sits at 15px on mobile too — preserves legibility (PRD §02). */
+@media (max-width: 749px) {
+  body {
+    font-size: 1.5rem;
+  }
+}
+
+/* Quiet down Dawn's default link underline on hover only,
+   except where the brand wants persistent underlines
+   (footer + journal "READ MORE" — class hooks added later). */
+a:not([class]) {
+  text-decoration-color: var(--poivre-rule);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color var(--poivre-transition);
+}
+a:not([class]):hover {
+  text-decoration-color: var(--poivre-ink-primary);
+}
