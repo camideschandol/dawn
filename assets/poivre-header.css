@@ -69,11 +69,24 @@
 /* ---------- Order: MENU · CART · → · nav · SEARCH … LOGO ---------- */
 
 @media screen and (min-width: 990px) {
-  /* MENU drawer trigger — first */
+  /* MENU drawer trigger — first, inline with rest */
   header-drawer,
   .header .menu-drawer-container {
     order: 1;
-    display: block !important;
+    display: inline-flex !important;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+  .header .menu-drawer-container details {
+    display: inline-flex;
+    align-items: center;
+  }
+  .header .menu-drawer-container summary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0;
+    margin: 0;
   }
 
   /* CART — second */
@@ -127,12 +140,12 @@
 
 .header__heading-logo {
   width: auto;
-  max-height: 28px;
+  max-height: 84px;
   height: auto;
 }
 
 @media screen and (max-width: 749px) {
-  .header__heading-logo { max-height: 24px; }
+  .header__heading-logo { max-height: 64px; }
 }
 
 /* ---------- Nav links — tiny, tracked-out, low-contrast ---------- */

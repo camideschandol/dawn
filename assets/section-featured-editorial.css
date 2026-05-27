@@ -49,6 +49,9 @@
   width: 100%;
   position: relative;
   overflow: hidden;
+  /* Warm-beige backdrop (Hyeja-style) — shows behind any uploaded image
+     and as a solid placeholder when no image is set. */
+  background: #DCC9B0;
 }
 .featured-editorial__text {
   order: 1;
@@ -61,13 +64,17 @@
 }
 
 /* Media */
-.featured-editorial__media img,
-.featured-editorial__media svg,
-.featured-editorial__placeholder {
+.featured-editorial__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Hide Dawn's default illustration placeholder — beige background shows instead. */
+.featured-editorial__media svg.placeholder-svg,
+.featured-editorial__placeholder {
+  display: none;
 }
 
 /* Text block — generous whitespace, vertical centering on desktop. */
