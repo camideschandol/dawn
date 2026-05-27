@@ -13,10 +13,11 @@ body.template-index #MainContent,
 body.template-index .shopify-section-group-header-group,
 body.template-index .shopify-section-header,
 body.template-index .section-header,
+body.template-index .header,
 body.template-index .featured-editorial,
 body.template-index .featured-editorial__text,
 body.template-index .color-background-1,
-body.template-index .shopify-section-header .color-scheme-1 {
+body.template-index .color-scheme-1:not(.utility-bar):not(.header__label):not(.header__submenu) {
   background-color: #F7F2F0 !important;
 }
 
@@ -318,7 +319,7 @@ body {
   .header__search .header__label {
     background: #FFFFFF;
     color: #1A1A1A;
-    border: none;
+    border: 1px solid #1A1A1A;
     border-radius: 999px; /* full pill / bullet shape */
     padding: 0.55rem 1.1rem;
     line-height: 1;
@@ -331,7 +332,7 @@ body {
     padding-bottom: 0.55rem;
   }
 
-  /* Hover/focus: subtle dim of the pill background. */
+  /* Hover/focus: invert (black fill, white text). */
   .header__icon--menu:hover .header__label,
   .header__icon--cart:hover .header__label,
   .header__icon--search:hover .header__label,
@@ -340,8 +341,9 @@ body {
   .header__icon--cart:focus-visible .header__label,
   .header__icon--search:focus-visible .header__label,
   .header__search:focus-visible .header__label {
-    background: #F7F2F0;
-    color: var(--poivre-accent-cocoa, #6B4423);
+    background: #1A1A1A;
+    color: #FFFFFF;
+    border-color: #1A1A1A;
   }
 
   /* Force vertical centering across all header children. */
