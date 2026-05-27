@@ -92,8 +92,8 @@ Brand foundations are defined in the Poivre Paris Brand Positioning Document. Th
 
 | Token | Value & usage |
 |---|---|
-| `--bg-primary` | `#F5EDE2` (warm cream) — default page background |
-| `--bg-secondary` | `#FAF6F0` (lighter cream) — alternate sections, popup background |
+| `--bg-primary` | `#FFFFFF` (white) — default page background |
+| `--bg-secondary` | `#FAF6F0` (warm off-white) — alternate sections, popup background |
 | `--ink-primary` | `#1A1A1A` (soft black) — body text, headings, primary UI |
 | `--ink-muted` | `#5C5C5C` — secondary text, form labels, footer fine print |
 | `--accent-cocoa` | `#6B4423` (warm cocoa) — used sparingly: hover states, editorial accents |
@@ -105,7 +105,7 @@ Brand foundations are defined in the Poivre Paris Brand Positioning Document. Th
 
 ### Spacing & layout
 
-- Max content width: 1440 px. Beyond this, content stays centered with cream margins.
+- Max content width: 1440 px. Beyond this, content stays centered with white margins.
 - Standard horizontal gutter: 40 px on desktop, 20 px on tablet, 16 px on mobile.
 - Vertical section spacing: 120–160 px between major sections on desktop, 64–80 px on mobile.
 - Generous whitespace is a brand requirement, not a design preference. Sections must breathe like Hyeja and Lesse — not feel dense.
@@ -198,7 +198,7 @@ The header, footer, newsletter pop-up, and cart drawer appear on every page and 
 **Layout**
 - Sticky on scroll, with a subtle shadow appearing once the user has scrolled past 80 px.
 - Height: 80 px desktop, 64 px mobile.
-- Background: `--bg-primary` (cream). On homepage hero, header background is transparent until scroll, with white/cream text overlaid on the hero image.
+- Background: `--bg-primary` (white). On homepage hero, header background is transparent until scroll, with white text overlaid on the hero image.
 
 **Composition**
 - Far left: Poivre wordmark logo (PNG/SVG asset). Click → returns to `/`. Logo height ~32 px desktop, ~24 px mobile.
@@ -222,12 +222,12 @@ The header, footer, newsletter pop-up, and cart drawer appear on every page and 
 > - Search submits to `/search` and returns Shopify search results styled in brand (not Dawn default).
 > - Shop dropdown reveals on hover (desktop, 200ms delay) and on tap (mobile).
 > - Sticky behavior: header remains visible on scroll, with subtle elevation shadow after 80 px scroll.
-> - On the homepage hero specifically, the header is transparent until scroll, then transitions to cream background.
+> - On the homepage hero specifically, the header is transparent until scroll, then transitions to white background.
 
 ### 4.2 · Footer
 
 **Layout**
-- Background: `--bg-primary` (cream). 1 px top border in `--rule`.
+- Background: `--bg-primary` (white). 1 px top border in `--rule`.
 - Vertical padding: 80 px top and bottom on desktop, 48 px on mobile.
 - Three-zone layout: left link column, right link column, newsletter block (right side or below on mobile).
 
@@ -318,7 +318,7 @@ The homepage is built section-by-section in the same vertical rhythm as Hyeja's.
 
 **Layout**
 - Full-bleed two-column on desktop: left column ~40%, right column ~60%. Stacks to single column on mobile.
-- Left column: cream background, contains the editorial copy block.
+- Left column: white background, contains the editorial copy block.
 - Right column: large lifestyle image of a Poivre product or styled scene.
 
 **Content**
@@ -771,7 +771,7 @@ Contact, Privacy Policy, and Terms & Conditions are present in the navigation an
 ### 12.3 · Accessibility
 
 - All images must have meaningful alt text. Decorative images use `alt=""`.
-- Color contrast: `--ink-primary` on `--bg-primary` meets WCAG AA. The brand's tonal palette must be tested — cocoa-on-cream and cream-on-cocoa combinations may fall below AA at small sizes. If so, restrict cocoa to larger text only.
+- Color contrast: `--ink-primary` on `--bg-primary` meets WCAG AA. The brand's tonal palette must be tested — cocoa-on-white and white-on-cocoa combinations may fall below AA at small sizes. If so, restrict cocoa to larger text only.
 - Keyboard navigation: every interactive element must be reachable via Tab and operable via Enter/Space. Visible focus rings — brand-styled (a thin `--accent-cocoa` outline), not the browser default.
 - Newsletter pop-up: focus trap inside modal, Esc closes, focus returns to the trigger on close.
 - Cart drawer: same focus-trap behavior.

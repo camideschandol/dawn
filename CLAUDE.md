@@ -87,26 +87,26 @@ hexes are in PRD §02 and the Brand Positioning Doc §07):
 ```css
 :root {
   /* Surfaces */
-  --bg-primary:    #F5EDE2;  /* cream — default page background */
-  --bg-secondary:  /* warmer cream / secondary surfaces */;
+  --bg-primary:    #FFFFFF;  /* white — default page background */
+  --bg-secondary:  #FAF6F0;  /* warm off-white — accent sections, popup */
 
   /* Ink */
   --ink-primary:   #1A1A1A;  /* soft black — body text */
-  --ink-muted:     /* muted grey for secondary text and small print */;
+  --ink-muted:     #5C5C5C;  /* muted grey for secondary text and small print */
 
   /* Accents — use sparingly, never as full backgrounds */
   --accent-cocoa:  #6B4423;  /* button hover, focus rings, dark editorial */
-  --accent-bordeaux: /* capsule / seasonal use */;
+  --accent-bordeaux: #6E1F2A; /* capsule / seasonal use only */
 
   /* Rules */
-  --rule:          /* hairline divider color */;
+  --rule:          #D9CFC2;  /* hairline divider color */
 }
 ```
 
 **Critical palette rule (PRD §02):** do not introduce any color outside this
-palette without explicit approval. The references (Hyeja, Lesse) achieve
-their quiet-luxury feel through tonal restraint. Trend-coded accent colors,
-gradients, and shadows are off-brand.
+palette without explicit approval. Trend-coded accent colors, gradients, and
+shadows are off-brand. The quiet-luxury feel comes from tonal restraint —
+white surface, soft black ink, cocoa accents used sparingly.
 
 ### Typography
 
