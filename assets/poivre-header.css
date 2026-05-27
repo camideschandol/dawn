@@ -10,10 +10,10 @@
 }
 
 .announcement-bar__message {
-  font-size: 0.85rem;
-  letter-spacing: var(--poivre-tracking-label, 0.1em);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  padding: 0.8rem 1.5rem;
+  padding: 0.6rem 1.5rem;
   font-weight: 300;
 }
 
@@ -26,15 +26,15 @@
 
 .header {
   align-items: center;
-  padding-top: 1.2rem;
-  padding-bottom: 1.2rem;
-  gap: 2rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  gap: 1.6rem;
 }
 
 @media screen and (min-width: 990px) {
   .header {
-    padding-top: 1.6rem;
-    padding-bottom: 1.6rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 }
 
@@ -69,23 +69,23 @@
 
 .header__heading-logo {
   width: auto;
-  max-height: 160px;
+  max-height: 48px;
   height: auto;
 }
 
 @media screen and (max-width: 749px) {
-  .header__heading-logo { max-height: 120px; }
+  .header__heading-logo { max-height: 36px; }
 }
 
-/* ---------- Nav links (Hyeja-style: tiny, tracked-out, quiet) ---------- */
+/* ---------- Nav links (Hyeja-style: small, tracked-out, quiet) ---------- */
 
 .header__menu-item {
   font-family: var(--font-body-family);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 300;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.8rem 1.2rem;
+  padding: 0.8rem 1.4rem;
   color: var(--poivre-ink-primary, #1A1A1A);
   transition: color 250ms ease;
 }
@@ -111,9 +111,9 @@
 }
 
 .header__submenu .header__menu-item {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   padding: 0.7rem 1.8rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
 }
 
 /* ---------- Right-side text labels (replaces icons) ---------- */
@@ -143,9 +143,9 @@
 .header__label {
   display: inline-block;
   font-family: var(--font-body-family);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 300;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--poivre-ink-primary, #1A1A1A);
   line-height: 1;
