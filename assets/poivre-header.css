@@ -115,7 +115,7 @@ body {
   align-items: center;
   flex-wrap: nowrap;
   grid-template: none !important;
-  gap: 1rem;
+  gap: 0.8rem;
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
   padding-left: 2rem;
@@ -251,7 +251,7 @@ body {
   color: #1A1A1A;
   background: #FFFFFF;
   border: 1px solid #1A1A1A;
-  border-radius: 999px;
+  border-radius: 0;
   line-height: 1;
   transition: background 250ms ease, color 250ms ease, border-color 250ms ease;
 }
@@ -271,11 +271,11 @@ body {
 
 .header__inline-menu {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.6rem;
 }
 
 .list-menu--inline {
-  gap: 0.4rem;
+  gap: 0.6rem;
 }
 
 /* Dropdown panel — hairline border, no shadow */
@@ -334,6 +334,7 @@ body {
    of the plain text nav items beside them. */
 
 @media screen and (min-width: 990px) {
+  /* MENU, CART, SEARCH — fully rounded pills */
   .header__icon--menu .header__label,
   .header__icon--cart .header__label,
   .header__icon--search .header__label,
@@ -341,16 +342,16 @@ body {
     background: #FFFFFF;
     color: #1A1A1A;
     border: 1px solid #1A1A1A;
-    border-radius: 999px; /* full pill / bullet shape */
+    border-radius: 999px;
     padding: 0.55rem 1.1rem;
     line-height: 1;
   }
 
-  /* Plain nav items: add equivalent vertical padding so the baselines align
-     with the pill-shaped labels. */
+  /* Plain nav items already have border-radius: 0 (sharp rectangles).
+     Match the pills' total height: same vertical padding + same border. */
   .header__menu-item {
-    padding-top: 0.55rem;
-    padding-bottom: 0.55rem;
+    padding: 0.55rem 1.1rem; /* matches pill padding exactly */
+    line-height: 1;
   }
 
   /* Hover/focus: invert (black fill, white text). */
