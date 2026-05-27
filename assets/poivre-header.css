@@ -1,6 +1,7 @@
 /* ============================================================
-   Poivre Paris — Header & announcement bar overrides (PRD §4.1)
-   Sits on top of Dawn's header styles. Smaller, quieter, more editorial.
+   Poivre Paris — Header (Hyeja-exact layout)
+   Overrides Dawn's grid with a flat horizontal flex row:
+   MENU · CART 0 · → · NEW IN · SHOP · ABOUT · JOURNAL · SEARCH … Logo (right)
    ============================================================ */
 
 /* ---------- Announcement bar ---------- */
@@ -10,32 +11,35 @@
 }
 
 .announcement-bar__message {
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 0.6rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   font-weight: 300;
 }
 
-/* ---------- Header container ---------- */
+/* ---------- Header outer container ---------- */
 
 .section-header {
   position: relative;
   z-index: 4;
 }
 
-.header {
+/* Replace Dawn's grid layout with a flat flex row. */
+.header.header,
+.header.header--middle-left,
+.header.header--middle-center,
+.header.header--top-left,
+.header.header--top-center {
+  display: flex !important;
+  flex-direction: row !important;
   align-items: center;
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
+  flex-wrap: nowrap;
+  grid-template: none !important;
   gap: 1.6rem;
-}
-
-@media screen and (min-width: 990px) {
-  .header {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  min-height: 0;
 }
 
 /* Hairline rule under header */
@@ -50,17 +54,69 @@
   pointer-events: none;
 }
 
-/* Sticky shadow — soft hairline only, no decorative drop shadow. */
 .shopify-section-header-sticky .section-header,
 .shopify-section-header-hidden .section-header {
   box-shadow: none;
 }
 
-.shopify-section-header-sticky .section-header::after {
-  background: var(--poivre-rule, #D9CFC2);
+/* ---------- Unwrap .header__icons so its children become flex
+   siblings of the rest of the header. Lets us order them individually. ---------- */
+
+.header__icons {
+  display: contents;
 }
 
-/* ---------- Logo / wordmark ---------- */
+/* ---------- Order: MENU · CART · → · nav · SEARCH … LOGO ---------- */
+
+@media screen and (min-width: 990px) {
+  /* MENU drawer trigger — first */
+  header-drawer,
+  .header .menu-drawer-container {
+    order: 1;
+    display: block !important;
+  }
+
+  /* CART — second */
+  .header__icon--cart {
+    order: 2;
+  }
+
+  /* Arrow separator after cart */
+  .header__icon--cart::after {
+    content: '\2192'; /* → */
+    margin-left: 1.6rem;
+    font-size: 0.8rem;
+    color: var(--poivre-ink-muted, #5C5C5C);
+    display: inline-block;
+    line-height: 1;
+  }
+
+  /* Inline nav (NEW IN, SHOP, ABOUT, JOURNAL) — fourth */
+  .header__inline-menu,
+  .list-menu--inline {
+    order: 4;
+  }
+
+  /* SEARCH — fifth */
+  .header__icon--search,
+  .header__search {
+    order: 5;
+  }
+
+  /* ACCOUNT — hide, Hyeja has no account link */
+  .header__icon--account {
+    display: none;
+  }
+
+  /* LOGO — right-aligned, last */
+  .header__heading {
+    order: 6;
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+/* ---------- Logo (wordmark) — small, Hyeja-scale ---------- */
 
 .header__heading-logo-wrapper {
   display: flex;
@@ -69,23 +125,23 @@
 
 .header__heading-logo {
   width: auto;
-  max-height: 48px;
+  max-height: 28px;
   height: auto;
 }
 
 @media screen and (max-width: 749px) {
-  .header__heading-logo { max-height: 36px; }
+  .header__heading-logo { max-height: 24px; }
 }
 
-/* ---------- Nav links (Hyeja-style: small, tracked-out, quiet) ---------- */
+/* ---------- Nav links — tiny, tracked-out, low-contrast ---------- */
 
 .header__menu-item {
   font-family: var(--font-body-family);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: 300;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  padding: 0.8rem 1.4rem;
+  padding: 0.5rem 0.8rem;
   color: var(--poivre-ink-primary, #1A1A1A);
   transition: color 250ms ease;
 }
@@ -95,46 +151,51 @@
   color: var(--poivre-accent-cocoa, #6B4423);
 }
 
-/* Remove Dawn's underline-on-hover decoration; brand uses color shift only. */
 .header__menu-item span {
   text-decoration: none !important;
 }
 
-/* Dropdown panel — soft, hairline border, no shadow. */
+.header__inline-menu {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.list-menu--inline {
+  gap: 0.4rem;
+}
+
+/* Dropdown panel — hairline border, no shadow */
 .header__submenu {
   background: var(--poivre-bg-primary, #FFFFFF);
   border: 1px solid var(--poivre-rule, #D9CFC2);
   border-top: none;
   box-shadow: none;
-  padding: 1.2rem 0;
-  min-width: 220px;
+  padding: 1rem 0;
+  min-width: 200px;
 }
 
 .header__submenu .header__menu-item {
-  font-size: 0.85rem;
-  padding: 0.7rem 1.8rem;
-  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  padding: 0.5rem 1.4rem;
+  letter-spacing: 0.16em;
 }
 
-/* ---------- Right-side text labels (replaces icons) ---------- */
+/* ---------- Right-side text labels (search, cart, menu) ---------- */
 
-.header__icons {
-  gap: 1.8rem;
-  align-items: center;
+/* Hide all SVG icons in the header — text labels replace them on desktop. */
+@media screen and (min-width: 990px) {
+  .header__icons .header__icon .svg-wrapper,
+  .menu-drawer-container .header__icon .svg-wrapper,
+  .menu-drawer-container .header__icon svg {
+    display: none;
+  }
+  /* Restore the close (×) icon inside the search modal — only inside the modal. */
+  .search-modal .svg-wrapper {
+    display: inline-block;
+  }
 }
 
-/* Hide the SVG icons inside header__icons — text labels replace them. */
-.header__icons .header__icon .svg-wrapper {
-  display: none;
-}
-
-/* Restore the close (×) SVG inside the open search modal — only inside-modal,
-   not in the header itself. The header trigger uses text. */
-.search-modal .svg-wrapper {
-  display: inline-block;
-}
-
-/* Hide redundant cart count bubble — count is rendered inline in the label. */
+/* Hide redundant circular cart count bubble (count is inline in the label). */
 .cart-count-bubble {
   display: none;
 }
@@ -143,23 +204,24 @@
 .header__label {
   display: inline-block;
   font-family: var(--font-body-family);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   font-weight: 300;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--poivre-ink-primary, #1A1A1A);
   line-height: 1;
   white-space: nowrap;
 }
 
-/* Strip Dawn's default icon button styling so the labels read as plain text. */
+/* Strip Dawn's icon button styling so labels read as plain text. */
 .header__icon,
 .header__icon--cart,
 .header__icon--account,
-.header__icon--search {
+.header__icon--search,
+.header__icon--menu {
   width: auto;
   height: auto;
-  padding: 0.6rem 0;
+  padding: 0.4rem 0;
   color: var(--poivre-ink-primary, #1A1A1A);
   background: transparent;
   transition: color 250ms ease;
@@ -176,12 +238,33 @@
   color: inherit;
 }
 
-/* On smaller screens, hide cart/account labels and use icons only. */
-@media screen and (max-width: 749px) {
-  .header__icons .header__icon .svg-wrapper { display: inline-block; }
+/* Make the summary toggle behave as inline text on desktop */
+@media screen and (min-width: 990px) {
+  .header__icon--summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .header__icon--summary::-webkit-details-marker { display: none; }
+}
+
+/* ---------- Mobile (< 990px): keep Dawn's compact layout with icons ---------- */
+
+@media screen and (max-width: 989px) {
+  .header.header {
+    display: grid !important;
+    grid-template: 'menu logo icons' / 1fr auto 1fr;
+    gap: 0;
+  }
+  .header__heading {
+    grid-area: logo;
+    justify-self: center;
+    margin: 0;
+  }
+  .header__inline-menu { display: none; }
   .header__label { display: none; }
-  .header__icon { padding: 0.6rem; }
+  .header__icons .header__icon .svg-wrapper { display: inline-block; }
   .header__icon svg { width: 18px; height: 18px; }
+  .header__icon--cart::after { display: none; }
   .cart-count-bubble {
     display: flex;
     background: var(--poivre-ink-primary, #1A1A1A);
@@ -189,48 +272,8 @@
     min-width: 1.6rem;
     height: 1.6rem;
     font-size: 0.75rem;
-    font-weight: 400;
   }
 }
 
-/* ---------- Search expand-on-click ---------- */
-
-.header__search {
-  display: flex;
-}
-
-details-modal[open] .modal__content {
-  background: var(--poivre-bg-primary, #FFFFFF);
-}
-
-.search-modal__form .field {
-  border-bottom: 1px solid var(--poivre-ink-primary, #1A1A1A);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-}
-
-/* ---------- Mobile hamburger ---------- */
-
-.header__icon--menu {
-  color: var(--poivre-ink-primary, #1A1A1A);
-}
-
-.menu-drawer {
-  background: var(--poivre-bg-primary, #FFFFFF);
-}
-
-.menu-drawer__menu-item {
-  font-family: var(--font-body-family);
-  font-size: 1rem;
-  letter-spacing: var(--poivre-tracking-label, 0.1em);
-  text-transform: uppercase;
-  font-weight: 300;
-}
-
-/* ---------- Edge case: hide locale selectors (we disabled them in config,
-   but legacy CSS may still reserve space). ---------- */
-
-.header__localization {
-  display: none;
-}
+/* Hide locale selectors (already disabled in config) */
+.header__localization { display: none; }

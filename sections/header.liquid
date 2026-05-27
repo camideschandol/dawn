@@ -291,7 +291,7 @@
           {% else %}
             <span class="svg-wrapper">{{'icon-cart.svg' | inline_asset_content }}</span>
           {% endif %}
-        <span class="header__label">CART ({{ cart.item_count | default: 0 }})</span>
+        <span class="header__label header__label--cart">CART {{ cart.item_count | default: 0 }}</span>
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
           <div class="cart-count-bubble">
