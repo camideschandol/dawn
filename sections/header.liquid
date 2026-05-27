@@ -160,7 +160,16 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
+              <div class="header__heading-logo-wrapper">
+                <img
+                  src="{{ 'logo-poivre.png' | asset_url }}"
+                  alt="{{ shop.name }}"
+                  class="header__heading-logo motion-reduce"
+                  width="160"
+                  height="40"
+                  loading="eager"
+                >
+              </div>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
@@ -200,7 +209,16 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
+              <div class="header__heading-logo-wrapper">
+                <img
+                  src="{{ 'logo-poivre.png' | asset_url }}"
+                  alt="{{ shop.name }}"
+                  class="header__heading-logo motion-reduce"
+                  width="160"
+                  height="40"
+                  loading="eager"
+                >
+              </div>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}

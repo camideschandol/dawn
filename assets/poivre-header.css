@@ -1,0 +1,199 @@
+/* ============================================================
+   Poivre Paris — Header & announcement bar overrides (PRD §4.1)
+   Sits on top of Dawn's header styles. Smaller, quieter, more editorial.
+   ============================================================ */
+
+/* ---------- Announcement bar ---------- */
+
+.announcement-bar {
+  border-bottom: 1px solid var(--poivre-rule, #D9CFC2);
+}
+
+.announcement-bar__message {
+  font-size: 0.85rem;
+  letter-spacing: var(--poivre-tracking-label, 0.1em);
+  text-transform: uppercase;
+  padding: 0.8rem 1.5rem;
+  font-weight: 300;
+}
+
+/* ---------- Header container ---------- */
+
+.section-header {
+  position: relative;
+  z-index: 4;
+}
+
+.header {
+  align-items: center;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  gap: 2rem;
+}
+
+@media screen and (min-width: 990px) {
+  .header {
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+  }
+}
+
+/* Hairline rule under header */
+.section-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--poivre-rule, #D9CFC2);
+  pointer-events: none;
+}
+
+/* Sticky shadow — soft hairline only, no decorative drop shadow. */
+.shopify-section-header-sticky .section-header,
+.shopify-section-header-hidden .section-header {
+  box-shadow: none;
+}
+
+.shopify-section-header-sticky .section-header::after {
+  background: var(--poivre-rule, #D9CFC2);
+}
+
+/* ---------- Logo / wordmark ---------- */
+
+.header__heading-logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.header__heading-logo {
+  width: auto;
+  max-height: 32px;
+  height: auto;
+}
+
+@media screen and (max-width: 749px) {
+  .header__heading-logo { max-height: 24px; }
+}
+
+/* ---------- Nav links ---------- */
+
+.header__menu-item {
+  font-family: var(--font-body-family);
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: var(--poivre-tracking-label, 0.1em);
+  text-transform: uppercase;
+  padding: 1rem 1.4rem;
+  color: var(--poivre-ink-primary, #1A1A1A);
+  transition: color 250ms ease;
+}
+
+.header__menu-item:hover,
+.header__menu-item[aria-expanded="true"] {
+  color: var(--poivre-accent-cocoa, #6B4423);
+}
+
+/* Remove Dawn's underline-on-hover decoration; brand uses color shift only. */
+.header__menu-item span {
+  text-decoration: none !important;
+}
+
+/* Dropdown panel — soft, hairline border, no shadow. */
+.header__submenu {
+  background: var(--poivre-bg-primary, #FFFFFF);
+  border: 1px solid var(--poivre-rule, #D9CFC2);
+  border-top: none;
+  box-shadow: none;
+  padding: 1.2rem 0;
+  min-width: 220px;
+}
+
+.header__submenu .header__menu-item {
+  font-size: 0.8rem;
+  padding: 0.7rem 1.8rem;
+  letter-spacing: 0.12em;
+}
+
+/* ---------- Icons (search, account, cart) ---------- */
+
+.header__icons {
+  gap: 0.4rem;
+}
+
+.header__icon,
+.header__icon--cart,
+.header__icon--account,
+.header__icon--search {
+  width: 4rem;
+  height: 4rem;
+  color: var(--poivre-ink-primary, #1A1A1A);
+  transition: color 250ms ease;
+}
+
+.header__icon:hover,
+.header__icon:focus-visible {
+  color: var(--poivre-accent-cocoa, #6B4423);
+  background: transparent;
+}
+
+.header__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Cart count bubble — small, subtle. */
+.cart-count-bubble {
+  background: var(--poivre-ink-primary, #1A1A1A);
+  color: var(--poivre-bg-primary, #FFFFFF);
+  min-width: 1.6rem;
+  height: 1.6rem;
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  font-weight: 400;
+  bottom: 0.6rem;
+  right: 0.6rem;
+}
+
+/* ---------- Search expand-on-click ---------- */
+
+.header__search {
+  display: flex;
+}
+
+details-modal[open] .modal__content {
+  background: var(--poivre-bg-primary, #FFFFFF);
+}
+
+.search-modal__form .field {
+  border-bottom: 1px solid var(--poivre-ink-primary, #1A1A1A);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+/* ---------- Mobile hamburger ---------- */
+
+.header__icon--menu {
+  color: var(--poivre-ink-primary, #1A1A1A);
+}
+
+.menu-drawer {
+  background: var(--poivre-bg-primary, #FFFFFF);
+}
+
+.menu-drawer__menu-item {
+  font-family: var(--font-body-family);
+  font-size: 1rem;
+  letter-spacing: var(--poivre-tracking-label, 0.1em);
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+/* ---------- Edge case: hide locale selectors (we disabled them in config,
+   but legacy CSS may still reserve space). ---------- */
+
+.header__localization {
+  display: none;
+}
