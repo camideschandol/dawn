@@ -240,15 +240,11 @@ body {
 
 .header__heading-logo {
   width: auto;
-  max-height: 84px;
+  max-height: 110px; /* +30% from 84px */
   height: auto;
   display: block;
-  /* Pull right past the PNG's built-in side padding so the visible wordmark's
-     right edge sits the same distance from the viewport as MENU does from the
-     left, and nudge down so the visual midline aligns with the tabs (ascending
-     curls in the script make geometric center read as "too high"). */
-  margin-right: -1.5rem;
-  transform: translateY(8px);
+  margin-right: -2.75rem;
+  transform: translateY(14px);
 }
 
 @media screen and (max-width: 749px) {
