@@ -282,7 +282,7 @@ body {
   max-height: 110px; /* +30% from 84px */
   height: auto;
   display: block;
-  transform: translateX(60px); /* push right only — vertical position handled by align-items: flex-start */
+  transform: translate(76px, -1.5rem); /* +1rem more right, 1.5rem up */
 }
 
 @media screen and (max-width: 749px) {
