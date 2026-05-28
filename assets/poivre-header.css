@@ -136,6 +136,13 @@ body {
 
 /* Tabs block: flat horizontal row with the MENU/CART/nav/SEARCH cluster.
    Becomes position: sticky once scrolled past. */
+/* Tabs pin in place: fixed to the viewport at their resting offset.
+   Logo + paragraph scroll away behind them. --tabs-top is the resting
+   distance from the top of the page; tune this one number to match. */
+:root {
+  --tabs-top: 0.2rem;
+}
+
 .header__tabs {
   display: flex;
   flex-direction: row;
@@ -143,10 +150,19 @@ body {
   flex-wrap: nowrap;
   gap: 0.8rem;
   padding: 0.8rem 2rem;
-  background: #F7F2F0;
-  position: sticky;
-  top: 0;
+  background: transparent;   /* tabs float alone — no bar */
+  position: fixed;
+  top: var(--tabs-top);
+  left: 0;
+  right: 0;
   z-index: 50;
+}
+
+@media screen and (min-width: 990px) {
+  .header__tabs {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
 }
 
 @media screen and (min-width: 990px) {
@@ -204,8 +220,8 @@ body {
   /* Arrow separator after cart */
   .header__icon--cart::after {
     content: '\2192'; /* → */
-    margin-left: 1.4rem;
-    margin-right: 1.4rem;
+    margin-left: 1.2rem;
+    margin-right: 2.5rem;
     font-size: 0.9rem;
     color: var(--poivre-ink-primary, #1A1A1A);
     display: inline-block;
@@ -237,8 +253,8 @@ body {
      Uses the Cormorant Bold variant loaded from Google Fonts. */
   .header__editorial {
     position: absolute;
-    top: 0.6rem;
-    left: calc(46% - 0.3rem);
+    top: 0.9rem;
+    left: calc(46% - 3rem);
     width: 580px;
     max-width: 580px;
     margin: 0;
@@ -259,9 +275,12 @@ body {
 
   /* LOGO — right-aligned, last */
   .header__heading {
-    order: 10;
-    margin-left: auto;
-    margin-right: 0;
+    position: fixed;
+    top: 1.2rem;
+    right: 0.7rem;
+    margin: 0;
+    padding: 0;
+    z-index: 51;
   }
 }
 
@@ -354,14 +373,24 @@ body {
   border: 1px solid var(--poivre-rule, #D9CFC2);
   border-top: none;
   box-shadow: none;
-  padding: 1rem 0;
-  min-width: 200px;
+  padding: 0;
+  min-width: 0 !important;
+  width: max-content !important;
+  max-width: 200px !important;
+}
+.header__submenu.list-menu {
+  padding: 0;
+  margin: 0;
 }
 
 .header__submenu .header__menu-item {
-  font-size: 0.7rem;
-  padding: 0.5rem 1.4rem;
-  letter-spacing: 0.16em;
+  font-size: 0.98rem;
+  padding: 0.6rem 1rem;
+  padding-right: 6.72rem;
+  letter-spacing: 0.14em;
+  border: none;
+  border-bottom: 1px solid var(--poivre-rule, #D9CFC2);
+  background: transparent;
 }
 
 /* ---------- Right-side text labels (search, cart, menu) ---------- */
@@ -459,6 +488,14 @@ body {
 a.header__heading-link {
   text-decoration: none !important;
 }
+.header__tabs .header__menu-item,
+.header__tabs .header__menu-item span,
+.header__tabs .header__menu-item:hover,
+.header__tabs .header__menu-item:focus,
+.header__tabs .header__active-menu-item,
+.header__tabs .header__menu-item[aria-expanded="true"] {
+  text-decoration: none !important;
+}
 
 .header .link:hover,
 .header__icon.link:hover {
@@ -520,3 +557,146 @@ a.header__heading-link {
 
 /* Hide locale selectors (already disabled in config) */
 .header__localization { display: none; }
+/* ============================================================
+   Search — rounded bubble that drops below the SEARCH pill
+   ============================================================ */
+@media screen and (min-width: 990px) {
+
+  /* Anchor the dropdown relative to the SEARCH pill. */
+  .header__search {
+    position: relative;
+  }
+
+  /* Suppress Dawn's full-page dim — the bubble floats freely. */
+  .header__search .modal-overlay {
+    display: none !important;
+  }
+
+  /* The dropdown panel itself. ONLY .search-modal carries the border;
+     descendants are transparent so there's no doubled outline. */
+  .header__search .search-modal {
+    position: absolute !important;
+    top: calc(100% + 0.6rem) !important;
+    right: 0 !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 260px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #FFFFFF !important;
+    border: 1px solid #1A1A1A !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+  }
+
+  /* Reset Dawn's positioning/padding on every wrapper inside; they just fill. */
+  .header__search .search-modal__content,
+  .header__search .search-modal__form,
+  .header__search .search {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  /* The .field wrapper: vertically centers the input + icon. Fixed height
+     defines the bubble height; no inner border or box-shadow rings. */
+  .header__search .field {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 36px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .header__search .field::before,
+  .header__search .field::after {
+    display: none !important;
+  }
+
+  /* The input — transparent, no border, vertically centered.
+     Equal-feeling horizontal whitespace: L 1.4rem, R 2.8rem (reserves room
+     for the absolutely-positioned icon button at right: 0.8rem). */
+  .header__search .search__input.field__input {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 2.8rem 0 1.4rem !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 999px !important;
+    font-family: var(--font-heading-family);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+    color: #1A1A1A;
+  }
+
+  /* Keep geometry stable when focused / has value (Dawn normally shifts top
+     padding to make room for its floating label, which we hide). */
+  .header__search .search__input.field__input:focus,
+  .header__search .search__input.field__input:not(:placeholder-shown),
+  .header__search .search__input.field__input:-webkit-autofill {
+    padding: 0 2.8rem 0 1.4rem !important;
+    margin: 0 !important;
+  }
+
+  /* Reveal the native placeholder (Dawn hides it because it relies on the
+     floating label, which we don't want in a pill this small). */
+  .header__search .search__input.field__input::placeholder {
+    opacity: 1 !important;
+    color: rgba(26, 26, 26, 0.55);
+  }
+
+  /* Hide Dawn's floating "Search" label — the placeholder serves that role. */
+  .header__search .field__label {
+    display: none !important;
+  }
+
+  /* The magnifying-glass submit — pinned to the bubble's right edge,
+     vertically centered, 16px tall. */
+  .header__search .search__button.field__button {
+    position: absolute !important;
+    top: 50% !important;
+    right: 0.8rem !important;
+    transform: translateY(-50%) !important;
+    width: 18px !important;
+    height: 18px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #1A1A1A;
+  }
+  .header__search .search__button .svg-wrapper,
+  .header__search .search__button svg {
+    width: 16px !important;
+    height: 16px !important;
+    display: block !important;
+  }
+
+  /* Hide Dawn's reset button and the modal close X — bubble has only input + icon. */
+  .header__search .reset__button,
+  .header__search .search-modal__close-button {
+    display: none !important;
+  }
+}
