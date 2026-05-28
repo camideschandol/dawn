@@ -222,18 +222,19 @@ body {
 
   /* Editorial paragraph — absolutely positioned just to the right of SEARCH,
      first line text aligned with the tab text baseline. Wraps to ~5 lines,
-     extends downward into the hero area without growing the header row. */
+     extends downward into the hero area without growing the header row.
+     Uses the Cormorant Bold variant loaded from Google Fonts. */
   .header__editorial {
     position: absolute;
-    top: 1.1rem; /* aligns first line text Y with SEARCH text Y */
-    left: 52%; /* placed to the right of the SEARCH tab */
+    top: 1.1rem;
+    left: 52%;
     width: 400px;
     max-width: 400px;
     margin: 0;
     padding: 0;
-    font-family: var(--font-heading-family);
+    font-family: 'Cormorant', var(--font-heading-family), Georgia, serif;
     font-style: normal;
-    font-weight: 800; /* heavier bold */
+    font-weight: 700; /* real bold from Google Fonts, not synthesized */
     font-size: 1.1rem;
     color: var(--poivre-ink-primary, #1A1A1A);
     text-align: left;
