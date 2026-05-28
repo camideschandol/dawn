@@ -176,12 +176,12 @@ body {
   }
   .header .menu-drawer-container details {
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
   }
   .header .menu-drawer-container summary {
     display: inline-flex;
     align-items: center;
-    padding: 0.4rem 0;
+    padding: 0;
     margin: 0;
   }
 
