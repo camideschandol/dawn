@@ -282,7 +282,7 @@ body {
   max-height: 110px; /* +30% from 84px */
   height: auto;
   display: block;
-  transform: translate(76px, -1.5rem); /* +1rem more right, 1.5rem up */
+  transform: translate(76px, -0.9rem); /* nudged 0.6rem down from -1.5rem */
 }
 
 @media screen and (max-width: 749px) {
