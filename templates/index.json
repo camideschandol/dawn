@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "featured_editorial": {
@@ -8,27 +17,14 @@
         "body": "<p>Poivre is a Paris-rooted home and tableware brand. Curated drops of considered, quietly luxurious objects — made to live with, not collect.</p>",
         "cta_label": "EXPLORE THE DROP",
         "cta_link": "shopify://collections/all",
-        "image_position": "right",
+        "image": "shopify://shop_images/backdrop_test.jpg",
+        "image_position": "left",
         "height": "large",
         "color_scheme": "scheme-1"
-      }
-    },
-    "featured_product_banner": {
-      "type": "section-featured-product-banner",
-      "settings": {
-        "eyebrow": "NEW IN",
-        "heading_override": "Marble Pepper Mill — Bordeaux",
-        "subtitle": "Hand-turned. Honed marble. Weighted right.",
-        "show_price": true,
-        "link_label": "VIEW PRODUCT",
-        "overlay_opacity": 15,
-        "text_color": "light",
-        "height": "large"
       }
     }
   },
   "order": [
-    "featured_editorial",
-    "featured_product_banner"
+    "featured_editorial"
   ]
 }
