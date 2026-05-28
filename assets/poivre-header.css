@@ -220,11 +220,39 @@ body {
     display: none !important;
   }
 
-  /* LOGO — right-aligned, last */
-  .header__heading {
+  /* Editorial paragraph — sits in the middle between SEARCH and LOGO,
+     small italic Cormorant text à la Hyeja's homepage. */
+  .header__editorial {
     order: 6;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0 2rem;
+    font-family: var(--font-heading-family);
+    font-style: italic;
+    font-weight: var(--font-heading-weight);
+    font-size: 0.92rem;
+    color: var(--poivre-ink-primary, #1A1A1A);
+    text-align: center;
+    line-height: 1.45;
+    max-width: 420px;
     margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* LOGO — right-aligned, after the editorial paragraph */
+  .header__heading {
+    order: 10;
     margin-right: 0;
+  }
+}
+
+/* Hide the editorial paragraph on mobile — header is too crowded for it. */
+@media screen and (max-width: 989px) {
+  .header__editorial {
+    display: none;
   }
 }
 
