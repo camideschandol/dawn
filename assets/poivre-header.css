@@ -226,7 +226,7 @@ body {
      Uses the Cormorant Bold variant loaded from Google Fonts. */
   .header__editorial {
     position: absolute;
-    top: 1.1rem;
+    top: 0.8rem; /* aligns top edge of paragraph with top edge of tab boxes */
     left: 52%;
     width: 580px;
     max-width: 580px;
