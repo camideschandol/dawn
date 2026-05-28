@@ -226,8 +226,8 @@ body {
      Uses the Cormorant Bold variant loaded from Google Fonts. */
   .header__editorial {
     position: absolute;
-    top: 0.8rem;
-    left: 46%;
+    top: 0.6rem;
+    left: calc(46% - 0.3rem);
     width: 580px;
     max-width: 580px;
     margin: 0;
