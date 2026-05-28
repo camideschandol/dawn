@@ -226,7 +226,7 @@ body {
      Uses the Cormorant Bold variant loaded from Google Fonts. */
   .header__editorial {
     position: absolute;
-    top: 0.8rem; /* aligns top edge of paragraph with top edge of tab boxes */
+    top: 0.8rem;
     left: 52%;
     width: 580px;
     max-width: 580px;
@@ -234,7 +234,7 @@ body {
     padding: 0;
     font-family: 'Cormorant', var(--font-heading-family), Georgia, serif;
     font-style: normal;
-    font-weight: 400; /* default for the unbolded tail of the paragraph */
+    font-weight: 400;
     font-size: 1.3rem;
     color: var(--poivre-ink-primary, #1A1A1A);
     text-align: left;
