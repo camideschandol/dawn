@@ -10,24 +10,33 @@
 
 body.template-index,
 body.template-index #MainContent,
+body.template-index .featured-editorial,
+body.template-index .featured-editorial__text,
+body.template-index .color-background-1,
+body.template-index .color-scheme-1:not(.utility-bar):not(.header__label):not(.header__submenu):not(.shopify-section-header):not(.section-header):not(.header):not(.shopify-section-group-header-group) {
+  background-color: #F7F2F0 !important;
+}
+
+/* Header itself stays transparent everywhere — only the tab pills/rectangles
+   should be visible. No background fill, no border, no shadow, even when sticky. */
+.shopify-section-group-header-group,
+.shopify-section-header,
+.section-header,
+.header,
+.shopify-section-header-sticky .section-header,
+.shopify-section-header-hidden .section-header,
 body.template-index .shopify-section-group-header-group,
 body.template-index .shopify-section-header,
 body.template-index .section-header,
 body.template-index .header,
-body.template-index .featured-editorial,
-body.template-index .featured-editorial__text,
-body.template-index .color-background-1,
-body.template-index .color-scheme-1:not(.utility-bar):not(.header__label):not(.header__submenu) {
-  background-color: #F7F2F0 !important;
-}
-
-/* Lose the borders/dividers between header and hero on homepage. */
-body.template-index .section-header,
-body.template-index .announcement-bar {
+body.template-index .shopify-section-header-sticky .section-header {
+  background: transparent !important;
   border: none !important;
+  box-shadow: none !important;
 }
 
-body.template-index .section-header::after {
+body.template-index .section-header::after,
+.section-header::after {
   display: none;
 }
 
@@ -98,7 +107,6 @@ body {
 /* ---------- Header outer container ---------- */
 
 .section-header {
-  position: relative;
   z-index: 4;
   overflow: visible;
 }
@@ -108,46 +116,49 @@ body {
   overflow: visible !important;
 }
 
-/* Replace Dawn's grid layout with a flat flex row.
-   Override .page-width so the header extends nearly edge-to-edge
-   (Hyeja-style — content fills the viewport with small gutters only). */
+/* Header outer: now a vertical stack — top block (logo + paragraph) above,
+   tabs block below. The tabs block becomes sticky on scroll. */
 .header.header,
 .header.header--middle-left,
 .header.header--middle-center,
 .header.header--top-left,
 .header.header--top-center {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: flex-start; /* tabs anchor to the top of the row */
-  flex-wrap: nowrap;
+  display: block !important;
   grid-template: none !important;
-  gap: 0.8rem;
   padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
   min-height: 0;
   max-width: none !important;
   width: 100%;
 }
 
+/* Tabs block: flat horizontal row with the MENU/CART/nav/SEARCH cluster.
+   Becomes position: sticky once scrolled past. */
+.header__tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 0.8rem;
+  padding: 0.8rem 2rem;
+  background: #F7F2F0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
 @media screen and (min-width: 990px) {
-  .header.header {
+  .header__tabs {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
 }
 
-/* Hairline rule under header */
+/* Header has no bottom hairline anywhere, and no sticky shadow on scroll. */
 .section-header::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: var(--poivre-rule, #D9CFC2);
-  pointer-events: none;
+  display: none;
 }
 
 .shopify-section-header-sticky .section-header,
@@ -263,16 +274,21 @@ body {
 
 /* ---------- Logo (wordmark) — small, Hyeja-scale ---------- */
 
-/* Logo stays right-aligned (margin-left: auto set earlier with the order rules).
-   Strip the h1's default top/bottom margins so the wordmark vertically centers
-   with the header tabs instead of sitting higher than them. */
-.header__heading,
-.header__heading-link,
-.header__heading-logo-wrapper {
+/* Top block: logo is a block-level h1 inside .header. Right-align its
+   content (the wordmark) using flex justify-content. */
+.header__heading {
   display: flex;
   align-items: center;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+  justify-content: flex-end;
+  margin: 0 !important;
+  padding: 0 2.5rem 0 0;
+  line-height: 1;
+}
+.header__heading-link,
+.header__heading-logo-wrapper {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 !important;
   padding: 0;
   line-height: 1;
 }

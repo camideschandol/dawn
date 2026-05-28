@@ -128,16 +128,11 @@
     endif
   -%}
   <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
-    {%- liquid
-      if section.settings.menu != blank
-        render 'header-drawer'
-      endif
 
-      if section.settings.logo_position == 'top-center' or section.settings.menu == blank
-        render 'header-search', input_id: 'Search-In-Modal-1'
-      endif
-    -%}
-
+    {%- comment -%}
+      Top block: logo + editorial paragraph. Stays in normal flow, scrolls away
+      with the page. Tabs are rendered below in their own sticky block.
+    {%- endcomment -%}
     {%- if section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
@@ -174,6 +169,32 @@
         </h1>
       {%- endif -%}
     {%- endif -%}
+
+    <p class="header__editorial">
+      <span class="header__editorial-bold">
+        Poivre chooses honestly. Stone, wood,<br>
+        ceramic — left to speak for themselves.
+      </span><br>
+      We don't smooth away the veining or sand<br>
+      out the grain. The marks of making stay<br>
+      where they belong: in your hands, on your table.
+    </p>
+
+    {%- comment -%}
+      Tabs block: nav row that becomes position: sticky once scrolled past.
+      Contains the MENU drawer, the inline nav (NEW IN, SHOP, …), and the
+      .header__icons cluster (SEARCH, CART). Logo + paragraph live outside.
+    {%- endcomment -%}
+    <div class="header__tabs">
+    {%- liquid
+      if section.settings.menu != blank
+        render 'header-drawer'
+      endif
+
+      if section.settings.logo_position == 'top-center' or section.settings.menu == blank
+        render 'header-search', input_id: 'Search-In-Modal-1'
+      endif
+    -%}
 
     {%- liquid
       if section.settings.menu != blank
@@ -303,16 +324,7 @@
         {%- endif -%}
       </a>
     </div>
-
-    <p class="header__editorial">
-      <span class="header__editorial-bold">
-        Poivre chooses honestly. Stone, wood,<br>
-        ceramic — left to speak for themselves.
-      </span><br>
-      We don't smooth away the veining or sand<br>
-      out the grain. The marks of making stay<br>
-      where they belong: in your hands, on your table.
-    </p>
+    </div>{%- comment -%} /.header__tabs {%- endcomment -%}
   </header>
 </{{ header_tag }}>
 
