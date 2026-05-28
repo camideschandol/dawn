@@ -318,6 +318,10 @@
 
     {% sections 'header-group' %}
 
+    {%- comment -%} Poivre tabs row — direct child of <body> so position: sticky
+        spans the full page scroll instead of just the header section. {%- endcomment -%}
+    {% render 'poivre-tabs' %}
+
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
