@@ -1,0 +1,210 @@
+{% comment %}
+  Poivre Paris — Featured Product Banner (PRD §5.3)
+  Mirrors Hyeja's FeaturedItem: full-bleed image with overlaid text.
+  3-column grid on desktop: eyebrow (L) · heading + subtitle (center) · price + link (R)
+  Stacks to single column under 768px.
+  All content editable via theme customizer.
+{% endcomment %}
+
+{{ 'section-featured-product-banner.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign product = section.settings.product
+  assign heading = section.settings.heading_override | default: product.title
+  assign link_url = product.url | default: '#'
+  assign has_link = false
+  if product != blank
+    assign has_link = true
+  endif
+
+  assign bg_image = section.settings.background_image | default: product.featured_image
+-%}
+
+<section
+  class="featured-product-banner featured-product-banner--text-{{ section.settings.text_color }} featured-product-banner--height-{{ section.settings.height }}"
+  aria-labelledby="FeaturedProductBanner-{{ section.id }}-heading"
+>
+  {%- if has_link -%}
+    <a
+      class="featured-product-banner__link"
+      href="{{ link_url }}"
+      aria-label="{{ heading | default: 'Featured product' | escape }}"
+    >
+  {%- endif -%}
+
+  <div class="featured-product-banner__media">
+    {%- if bg_image != blank -%}
+      {%- assign image_widths = '750, 1100, 1500, 1920, 2400, 3000' -%}
+      {{
+        bg_image
+        | image_url: width: 3000
+        | image_tag:
+          loading: 'lazy',
+          sizes: '100vw',
+          widths: image_widths,
+          alt: bg_image.alt | default: heading | default: 'Featured product',
+          class: 'featured-product-banner__image'
+      }}
+    {%- else -%}
+      <div class="featured-product-banner__placeholder" aria-hidden="true"></div>
+    {%- endif -%}
+
+    {%- if section.settings.overlay_opacity > 0 -%}
+      <div
+        class="featured-product-banner__overlay"
+        style="--overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"
+        aria-hidden="true"
+      ></div>
+    {%- endif -%}
+  </div>
+
+  <div class="featured-product-banner__grid">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="featured-product-banner__eyebrow">
+        {{ section.settings.eyebrow | escape }}
+      </p>
+    {%- endif -%}
+
+    <div class="featured-product-banner__center">
+      {%- if heading != blank -%}
+        <h2
+          class="featured-product-banner__heading"
+          id="FeaturedProductBanner-{{ section.id }}-heading"
+        >
+          {{ heading | escape }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="featured-product-banner__subtitle">
+          <em>{{ section.settings.subtitle | escape }}</em>
+        </p>
+      {%- endif -%}
+    </div>
+
+    <div class="featured-product-banner__meta">
+      {%- if section.settings.show_price and product != blank -%}
+        <span class="featured-product-banner__price">
+          {{ product.price | money }}
+        </span>
+      {%- endif -%}
+
+      {%- if section.settings.link_label != blank -%}
+        <span class="featured-product-banner__link-label">
+          {{ section.settings.link_label | escape }}
+        </span>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if has_link -%}
+    </a>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Featured product banner",
+  "tag": "section",
+  "class": "section section-featured-product-banner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Full-bleed lifestyle / product image. Landscape recommended. If empty, falls back to the linked product's featured image."
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Image overlay opacity",
+      "info": "Dim the image for legibility of the overlay text.",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "default": 15,
+      "unit": "%"
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "light",
+      "options": [
+        { "value": "light", "label": "Light (over dark image)" },
+        { "value": "dark",  "label": "Dark (over light image)" }
+      ]
+    },
+
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "info": "Small tracked-out label, top left.",
+      "default": "NEW IN"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Linked product",
+      "info": "Used for the link, default name, default price, and (if no background image) default image."
+    },
+    {
+      "type": "text",
+      "id": "heading_override",
+      "label": "Heading override",
+      "info": "Leave blank to use the product name."
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Italic subtitle",
+      "info": "Short evocative line, e.g. \"Hand-turned. Honed marble.\""
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show price",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "VIEW PRODUCT"
+    },
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Section height",
+      "default": "large",
+      "options": [
+        { "value": "medium", "label": "Medium (60vh)" },
+        { "value": "large",  "label": "Large (80vh)" },
+        { "value": "full",   "label": "Full viewport" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured product banner"
+    }
+  ]
+}
+{% endschema %}

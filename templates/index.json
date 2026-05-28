@@ -12,9 +12,23 @@
         "height": "large",
         "color_scheme": "scheme-1"
       }
+    },
+    "featured_product_banner": {
+      "type": "section-featured-product-banner",
+      "settings": {
+        "eyebrow": "NEW IN",
+        "heading_override": "Marble Pepper Mill — Bordeaux",
+        "subtitle": "Hand-turned. Honed marble. Weighted right.",
+        "show_price": true,
+        "link_label": "VIEW PRODUCT",
+        "overlay_opacity": 15,
+        "text_color": "light",
+        "height": "large"
+      }
     }
   },
   "order": [
-    "featured_editorial"
+    "featured_editorial",
+    "featured_product_banner"
   ]
 }

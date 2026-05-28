@@ -1,0 +1,212 @@
+/* ============================================================
+   Poivre Paris — Featured Product Banner (PRD §5.3)
+   Full-bleed background image with a 3-col overlay:
+   eyebrow (L) · heading + italic subtitle (center) · price + link (R)
+   ============================================================ */
+
+.featured-product-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #F7F2F0; /* fallback before image loads */
+}
+
+/* Section heights — easy preset choices via the customizer. */
+.featured-product-banner--height-medium { height: 60vh; min-height: 420px; }
+.featured-product-banner--height-large  { height: 80vh; min-height: 560px; }
+.featured-product-banner--height-full   { height: 100vh; min-height: 640px; }
+
+/* The whole banner is one clickable surface when a product is linked. */
+.featured-product-banner__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- Background image / placeholder ---------- */
+
+.featured-product-banner__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.featured-product-banner__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.featured-product-banner__placeholder {
+  width: 100%;
+  height: 100%;
+  background: #DCD0BD; /* warm beige placeholder when no image is uploaded */
+}
+
+.featured-product-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: var(--overlay-opacity, 0.15);
+  pointer-events: none;
+}
+
+/* ---------- Overlay text grid ---------- */
+
+.featured-product-banner__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  width: 100%;
+  height: 100%;
+  padding: 3.2rem 2rem;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 990px) {
+  .featured-product-banner__grid {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr;
+    padding: 4rem 4rem;
+    align-items: center;
+  }
+}
+
+/* ---------- Eyebrow (top-left on desktop, top on mobile) ---------- */
+
+.featured-product-banner__eyebrow {
+  margin: 0;
+  font-family: var(--font-body-family);
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  align-self: start;
+}
+
+@media screen and (min-width: 990px) {
+  .featured-product-banner__eyebrow {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    align-self: start;
+  }
+}
+
+/* ---------- Center: heading + italic subtitle ---------- */
+
+.featured-product-banner__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.8rem;
+  margin: 2.4rem 0;
+}
+
+@media screen and (min-width: 990px) {
+  .featured-product-banner__center {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+  }
+}
+
+.featured-product-banner__heading {
+  margin: 0;
+  font-family: var(--font-heading-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.15;
+  letter-spacing: 0;
+  max-width: 18ch;
+}
+
+@media screen and (min-width: 750px) {
+  .featured-product-banner__heading { font-size: 2.4rem; }
+}
+@media screen and (min-width: 990px) {
+  .featured-product-banner__heading { font-size: 2.8rem; }
+}
+@media screen and (min-width: 1400px) {
+  .featured-product-banner__heading { font-size: 3.4rem; }
+}
+
+.featured-product-banner__subtitle {
+  margin: 0;
+  font-family: var(--font-heading-family);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.45;
+  max-width: 32ch;
+  opacity: 0.92;
+}
+
+@media screen and (min-width: 990px) {
+  .featured-product-banner__subtitle { font-size: 1.1rem; }
+}
+
+/* ---------- Meta: price + "VIEW PRODUCT" (right column) ---------- */
+
+.featured-product-banner__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  margin-top: auto;
+  text-align: right;
+}
+
+@media screen and (min-width: 990px) {
+  .featured-product-banner__meta {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: end;
+    margin-top: 0;
+  }
+}
+
+.featured-product-banner__price {
+  font-family: var(--font-body-family);
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.featured-product-banner__link-label {
+  font-family: var(--font-body-family);
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid currentColor;
+  transition: opacity 250ms ease;
+}
+
+/* Hover only on link wrappers — meta has its own subtle reveal */
+.featured-product-banner__link:hover .featured-product-banner__link-label {
+  opacity: 0.7;
+}
+
+/* ---------- Text color variants ---------- */
+
+.featured-product-banner--text-light,
+.featured-product-banner--text-light a,
+.featured-product-banner--text-light .featured-product-banner__link {
+  color: #FFFFFF;
+}
+
+.featured-product-banner--text-dark,
+.featured-product-banner--text-dark a,
+.featured-product-banner--text-dark .featured-product-banner__link {
+  color: #1A1A1A;
+}
