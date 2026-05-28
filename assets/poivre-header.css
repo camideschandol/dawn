@@ -577,7 +577,7 @@ a.header__heading-link {
   .header__search .search-modal {
     position: absolute !important;
     top: calc(100% + 0.6rem) !important;
-    right: 0 !important;
+    right: -2.5px !important;   /* align bubble's right with the pill's visible border edge */
     left: auto !important;
     bottom: auto !important;
     width: 260px !important;
