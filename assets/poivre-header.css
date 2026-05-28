@@ -118,7 +118,7 @@ body {
 .header.header--top-center {
   display: flex !important;
   flex-direction: row !important;
-  align-items: center;
+  align-items: flex-start; /* tabs anchor to the top of the row */
   flex-wrap: nowrap;
   grid-template: none !important;
   gap: 0.8rem;
@@ -282,7 +282,7 @@ body {
   max-height: 110px; /* +30% from 84px */
   height: auto;
   display: block;
-  transform: translate(60px, 24px); /* push right + down, visually */
+  transform: translateX(60px); /* push right only — vertical position handled by align-items: flex-start */
 }
 
 @media screen and (max-width: 749px) {
@@ -418,16 +418,6 @@ body {
     border-color: #1A1A1A;
   }
 
-  /* Force vertical centering across all header children. */
-  .header.header,
-  .header.header > *,
-  .header.header header-drawer,
-  .header.header .header__icon,
-  .header.header .header__inline-menu,
-  .header.header .header__menu-item {
-    align-items: center;
-    align-self: center;
-  }
 }
 
 /* Strip Dawn's icon button styling so labels read as plain text. */
